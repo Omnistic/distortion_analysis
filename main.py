@@ -110,6 +110,11 @@ opt_center = np.array([opt_center_y, opt_center_x])
 
 optimized_grid = create_grid(opt_center, opt_spacing, max_dist, opt_angle)
 
+distances = cdist(centroids, optimized_grid)
+min_distances = np.min(distances, axis=1)
+max_remaining_distance = np.max(min_distances)
+print(f'Max remaining distance after optimization: {max_remaining_distance:.2f} pixels')
+
 # fig = make_subplots(rows=3, cols=3)
 
 # fig.add_trace(
@@ -182,7 +187,7 @@ optimized_grid = create_grid(opt_center, opt_spacing, max_dist, opt_angle)
 # fig.update_layout(
 #     showlegend=False,
 #     xaxis=dict(
-#         scaleanchor="y",
+#         scaleanchor='y',
 #         scaleratio=1
 #     )
 # )
@@ -228,10 +233,11 @@ fig.add_trace(
 fig.update_layout(
     showlegend=True,
     xaxis=dict(
-        scaleanchor="y",
+        scaleanchor='y',
         scaleratio=1,
         visible=False
     ),
     yaxis=dict(visible=False)
 )
 fig.show()
+fig.write_html('distortion_result.html')
