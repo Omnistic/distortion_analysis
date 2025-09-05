@@ -1,0 +1,16 @@
+[workspace]
+channels = ["conda-forge"]
+name = "distortion_analysis"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+start = "python main.py"
+
+[dependencies]
+plotly = ">=6.3.0,<7"
+scikit-image = ">=0.25.2,<0.26"
+bioio = ">=3.0.0,<4"
+
+[pypi-dependencies]
+bioio-czi = ">=2.4.0, <3"
